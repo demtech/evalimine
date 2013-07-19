@@ -1,0 +1,90 @@
+Joe Kiniry
+17 July 2013
+===================
+Incidental Analysis
+===================
+- vote_analyzer.analyze() has empty implementation.
+- analyze used in hesdisp.__hts_vote to check that a (person x vote x
+  votebox) triple is "good".  analysis is only logged though.  actual
+  analysis used to branch is defined eventually in hesdisp.__proxy
+
+=====================
+Rough Size and Nature
+=====================
+Totals grouped by language (dominant language first):
+python:        9892 (59.46%)
+cpp:           6487 (38.99%)
+sh:             257 (1.54%)
+
+Total Physical Source Lines of Code (SLOC)                = 16,636
+Development Effort Estimate, Person-Years (Person-Months) = 3.83 (45.95)
+ (Basic COCOMO model, Person-Months = 2.4 * (KSLOC**1.05))
+Schedule Estimate, Years (Months)                         = 0.89 (10.71)
+ (Basic COCOMO model, Months = 2.5 * (person-months**0.38))
+Estimated Average Number of Developers (Effort/Schedule)  = 4.29
+Total Estimated Cost to Develop                           = $ 517,301
+ (average salary = $56,286/year, overhead = 2.40).
+
+Total comments in Python code ~225 lines.
+Comment coverage in Python code = 225/9892 = 2.3%
+
+Total comments in C++ code ~80 lines.
+Comment coverage in C++ code = 80/6487 = 1.2%
+
+==================================
+Use of Basic Good Coding Practices
+==================================
+- 2 assertions in C++ code
+- 1 assertion in Python code (for a default case in CLO processing)
+- 1 function comment
+- The majority of comments are in reused library code, not in
+  Estonia's code (proper).
+
+=====
+Build
+=====
+Relies upon:
+ - Python 2.7
+ - pychecker
+ - pylint
+ - dpkg
+
+Build system hints at test files (test_*) but they do not exist.
+System will not even build as missing test files trigger failure.
+
+- pylint target runs and gives one failure:
+  ksum.py:88: [E1121, votehash] Too many positional arguments for function call
+
+- Build presumes existence of dpkg-architecture (and thus, we are some
+  flavors of Linux).  dpkg can be easily installed via Brew, but the
+  OS X version is not configured by default to actually install
+  software.  dpkg support is a big mess, especially on OS X via Brew
+  and MacPorts.
+
+- Tons of implicit dependencies in Python code that are nearly
+  undocumented.  They are mentioned offhandedly in debian/changelog.
+  + bdocpython (BDOC?)
+  + Mobiil-ID (Is necessary code public?)  http://mobiil.id.ee/
+  + Uus HSM (hardware security module?  YubiKeys?)
+  + kontrollitavus
+
+===================
+Need to Investigate 
+===================
+- Public SVN server
+  https://svn.eesti.ee/projektid/idkaart_public/trunk/libdigidocpp/
+
+- Provided Apache configuration
+  ivote-server/cgi/
+
+- Logging subsystem
+  common/evlog.py
+
+- Missing test files hinted at by build system (test_*)
+
+- Mobiil-ID (http://mobiil.id.ee/)
+
+
+
+
+
