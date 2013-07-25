@@ -63,10 +63,44 @@ System will not even build as missing test files trigger failure.
 
 - Tons of implicit dependencies in Python code that are nearly
   undocumented.  They are mentioned offhandedly in debian/changelog.
-  + bdocpython (BDOC?)
+  + bdocpython (BDOC? http://wpki.eu/wiki/upload/8/82/BDoc-1.0.pdf)
   + Mobiil-ID (Is necessary code public?)  http://mobiil.id.ee/
   + Uus HSM (hardware security module?  YubiKeys?)
   + kontrollitavus
+
+- Example Apache server config looks fine.  SSL configuration looks
+  ok.  SSL is only used for HES.  Certificates are included in the
+  code drop.
+
+- Large amount of included code is lifted from libraries and is used
+  for handling server-side crypto (particularly certificate
+  management).  "Borrowed" code has no attribution of source,
+  authorship, or license.  E.g., base64 from John Walker and in the
+  public domain.  countLines taken from GNU's wc (tch tch).
+
+- Decryption is multi-threaded
+
+- No harness included.
+
+- Main method included in several subsystems:
+  hts/htsdisp
+  hts/htsalldisp
+  hlr/threaded_decrypt
+  hlr/hlr
+  debian/repo
+  common/replace_candidates
+  common/regrights
+  common/ksum
+  common/hts_state
+  common/config_hth
+  common/config_hsm
+  common/config_hlr_input
+  common/config_common
+  common/config_bdoc
+  common/check_inputlists
+  common/apply_changes
+
+- Tarvi Martens's name not mentioned anywhere.
 
 ===================
 Need to Investigate 
@@ -76,6 +110,17 @@ Need to Investigate
 
 - Provided Apache configuration
   ivote-server/cgi/
+
+- appConfig.json?
+- SSLVerifyClient only for hes.cgi
+    SSLVerifyDepth 2
+    SSLProtocol -SSLv2 -SSLv3 +TLSv1 -TLSv1.1 -TLSv1.2
+    SSLOptions +ExportCertData +StrictRequire
+    SSLCipherSuite TLSv1:!LOW:!MD5:!EXP:!DH:!NULL:!RC4
+   SetHandler cgi-script
+
+
+- hts-verify-vote.cgi !!
 
 - Logging subsystem
   common/evlog.py

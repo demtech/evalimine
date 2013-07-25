@@ -9,6 +9,9 @@
  * http://creativecommons.org/licenses/by-nc-nd/3.0/.
  * */
 
+// @note kiniry - This is John Walkers's base64 code.
+// http://realxtend-naali-deps.googlecode.com/svn/trunk/xmlrpc-epi/src/base64.c
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>

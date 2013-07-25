@@ -20,6 +20,7 @@
  * for building Win32 Cryptoki libraries and applications.
  */
 
+// @note kiniry - Cryptoki is Oracle's crypto library.
 
 #ifndef ___CRYPTOKI_H_INC___
 

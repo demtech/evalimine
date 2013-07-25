@@ -20,16 +20,15 @@ pycheck:
 		make -C $$i checker; \
 	done
 
-ARCH:=$(shell dpkg-architecture -qDEB_HOST_ARCH)
-debuild:
-	debuild -i -I || echo "debuild $(ARCH)"
-	./debian/repo.py ../evote-$(ARCH) .. $(ARCH)
+#ARCH:=$(shell dpkg-architecture -qDEB_HOST_ARCH)
+#debuild:
+#	debuild -i -I || echo "debuild $(ARCH)"
+#	./debian/repo.py ../evote-$(ARCH) .. $(ARCH)
 
-deb: pybdoc/Makefile
-
-	$(MAKE) -C pybdoc
-	$(MAKE) -C common messages
-	$(MAKE) -C hlr
+# deb: pybdoc/Makefile
+# 	$(MAKE) -C pybdoc
+# 	$(MAKE) -C common messages
+# 	$(MAKE) -C hlr
 
 clean: pybdoc/Makefile
 	$(MAKE) -C pybdoc clean
@@ -47,3 +46,12 @@ distclean: pybdoc/Makefile
 
 pybdoc/Makefile:
 	$(MAKE) -C pybdoc -f Makeall
+
+# run EVUI subsystem
+evui:
+	$(PYTHON) evui/evui.py
+
+# decrypt votes
+hlr:
+	hlr/threaded_decrypt $(*)
+

@@ -9,6 +9,8 @@
  * http://creativecommons.org/licenses/by-nc-nd/3.0/.
  * */
 
+// @note kiniry - This code looks like it was lifted from GNU's wc.
+// http://ftp-archive.freebsd.org/pub/FreeBSD-Archive/old-releases/i386/1.0-RELEASE/ports/textutils/src/wc.c
 
 #include <string.h>
 #include <unistd.h>

@@ -1,2 +1,7 @@
 *.pyc
 .depend
+*.o
+.DS_Store
+*.cache
+config.log
+threaded_decrypt
